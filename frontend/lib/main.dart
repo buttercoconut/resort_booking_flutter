@@ -19,4 +19,5 @@ class ResortApp extends StatelessWidget {
       initialRoute: Routes.search,
       routes: Routes.routes,
     );
+  }
 }

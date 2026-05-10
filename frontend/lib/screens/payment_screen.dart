@@ -6,25 +6,12 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final payload = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Payment'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Paying for resort ${payload['resortId']}'),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.review, arguments: payload);
-              },
-              child: const Text('Confirm Payment'),
-            ),
-          ],
-        ),
+      body: const Center(
+        child: Text('Payment Screen'),
       ),
     );
   }

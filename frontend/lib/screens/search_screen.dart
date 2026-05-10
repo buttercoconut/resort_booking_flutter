@@ -20,48 +20,27 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     ref.read(resortsProvider.notifier).loadResorts();
   }
 
-  void _onSearch() {
-    final query = _searchController.text.trim();
-    ref.read(resortsProvider.notifier).loadResorts(query: query.isEmpty ? null : query);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final resortsAsync = ref.watch(resortsProvider);
-
+    final resorts = ref.watch(resortsProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Resort Booking'),
+        title: const Text('Search Resorts'),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: const InputDecoration(
-                      hintText: 'Search resorts',
-                      border: OutlineInputBorder(),
-                    ),
-                    onSubmitted: (_) => _onSearch(),
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: _onSearch,
-                ),
-              ],
+            child: TextField(
+              controller: _searchController,
+              decoration: const InputDecoration(
+                labelText: 'Search',
+                suffixIcon: Icon(Icons.search),
+              ),
             ),
           ),
           Expanded(
-            child: resortsAsync.when(
-              data: (resorts) => ResortList(resorts: resorts),
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (e, st) => Center(child: Text('Error: $e')),
-            ),
+            child: ResortList(resorts: resorts),
           ),
         ],
       ),

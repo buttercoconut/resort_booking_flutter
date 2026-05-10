@@ -6,25 +6,12 @@ class ReviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final payload = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Review & Confirmation'),
+        title: const Text('Review'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Review booking for resort ${payload['resortId']}'),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.profile);
-              },
-              child: const Text('Finish'),
-            ),
-          ],
-        ),
+      body: const Center(
+        child: Text('Review Screen'),
       ),
     );
   }
